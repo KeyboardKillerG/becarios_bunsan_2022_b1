@@ -60,4 +60,9 @@ If-modified-since: 27 Feb 2017 08:10:00
 
 
 a) Escribe dos respuestas posibles del servidor HTTP (solo la línea de estado)
+HTTP/1.1 200 OK
+HTTP/1.1 404 Not Found
+
 b) Suponiendo que el mensaje se envía a través de un Proxy, especifica el comportamiento del propio Proxy.
+El proxy actúa como intermediario entre el cliente y el servidor. El propio servidor proxy analiza la solicitud, reenvía la petición como si el proxy fuese el propio origen y retorna la respuesta del servidor al cliente.
+
