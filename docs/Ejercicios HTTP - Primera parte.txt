@@ -1,0 +1,63 @@
+﻿Ejercicio 1: HTTP
+Este es un ejemplo de una solicitud (request) HTTP.
+
+
+GET https://wareware.bunsan.io/collaborators  HTTP/1.1
+Host: cs.unibg.it
+User Agent: Mozilla/5.0 (Macintosh; U; PPC Mac OS X; en) AppleWebKit/124
+(KHTML, like Gecko) Safari/125
+Accept: ext/xml, application/xml, application/xhtml+xml, text/html;q=0.9,
+text/plain;q=0.8, image/png,*,*;q=0.5
+Accept-Language: it
+Keep-Alive: 300
+Connection: keep-alive
+
+
+Responde a las siguientes preguntas, indicando dónde (por ejemplo, en qué campo) en la solicitud HTTP puedes encontrar la respuesta:
+
+
+1) ¿Cuál es la URL solicitada?
+https://wareware.bunsan.io/collaborators
+2) ¿Qué versión de HTTP se utiliza?
+1.1
+3) ¿El navegador solicita una conexión persistente o no persistente?
+Persistente
+4) ¿Cuál es, en tu opinión, la utilidad de indicar el tipo (y versión) de navegador utilizado por
+el cliente en la solicitud HTTP?
+Un motivo es la renderización de las vistas, la versión del navegador es usada para verificar que el contenido de la página web puede ser mostrado correctamente en esa versión del navegador o simplemente mostrar el contenido o no, por ejemplo, “Esta página web debe ser vista en Internet Google Chrome”. Otra razón es la seguridad, navegadores desactualizados podrían no soportar los conjuntos de cifrado mínimos requeridos por la página web como SSL o TLS, es necesario conocer la versión del navegador para evitar crear conexiones inseguras y poner en riesgo información. También puede ser usada para analizar métricas de los navegadores y sistemas operativos que utilizan los usuarios.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Ejercicio 2: HTTP
+
+
+Un cliente HTTP envía el siguiente mensaje:
+
+
+GET https://wareware.bunsan.io/assignments HTTP/1.1
+User-agent: Mozilla/4.0
+Accept: text/html, image/gif, image/jpeg
+If-modified-since: 27 Feb 2017 08:10:00
+
+
+a) Escribe dos respuestas posibles del servidor HTTP (solo la línea de estado)
+b) Suponiendo que el mensaje se envía a través de un Proxy, especifica el comportamiento del propio Proxy.

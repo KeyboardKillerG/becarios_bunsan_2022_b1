@@ -7,7 +7,14 @@ defmodule BecariosBunsan2022B1.MixProject do
       version: "0.1.0",
       elixir: "~> 1.13",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [
+        coveralls: :test,
+        "coveralls.detail": :test,
+        "coveralls.post": :test,
+        "coveralls.html": :test
+      ]
     ]
   end
 
@@ -24,7 +31,9 @@ defmodule BecariosBunsan2022B1.MixProject do
       # {:dep_from_hexpm,~> 0.3.0"},
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
       {:sweet_xml, "~> 0.7.2"},
-      {:libgraph, "~> 0.13.3"}
+      {:libgraph, "~> 0.13.3"},
+      {:tzdata, "~> 1.1"},
+      {:excoveralls, "~> 0.10", only: :test},
     ]
   end
 end
