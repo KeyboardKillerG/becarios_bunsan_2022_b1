@@ -92,7 +92,7 @@ movie after complete download.
     
 4. Send the bad headers using nc e.g.  cat req-badhdr.txt | nc myweb.com 80  
     
-    ![Netcat bad request](./images/nc_400.png)
+![Netcat bad request](./images/nc_400.png)
 
 5.   Analyze the response given by web server and verify that it corresponds to  ‘400 Bad Request’.  
 
@@ -100,7 +100,38 @@ movie after complete download.
     
 ![Another bad request](./images/bad_request_bunsan.png)
 
-7.   Verify the Bad Request error
+7. Verify the Bad Request error
+
+### Using chunk based delivery
+
+1. In firefox, access http://rprustagi.com/workshops/web/chunk-xfer.php . See how the image is incrementally displayed.
+
+2. Create a php file like chunk-xfer.php (7.4) to generated HTTP Response in terms of chunks.
+
+3. Copy your favourite image file (e.g. your own photo) and save it in DocumentRoot.
+
+4. Ensure that your image filename is correctly described in the program file chunk-xfer.php
+
+5. From the browser, access the URL http://myweb.com/chunk-xfer.php
+
+6. Analyze the HTTP response in wireshark and identify chunks.
+
+7. Edit the program file and change chunk sizes or mimic the internet delay i.e.sleep time.
+
+8. Re-access the URL and analyze the response.
+
+![wget Chunk Based Delivery](./images/wget_chunked.png)
+
+### Status 206: Partial Content Delivery
+
+1. Create a simple text file req-partial.txt (7.5) to send the HTTP headers requesting specific range of content.
+
+2.  Make a request to web server for partial content delivery i.e.
+
+![wget Partial Content Delivery](./images/wget_partial_content.png)
+
+3.  Analyze the HTTP response headers as well wireshark capture.
+
 
 ### Using compression 
 
