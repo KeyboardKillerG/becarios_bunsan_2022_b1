@@ -1,0 +1,50 @@
+  466  pwd
+  467  mkdir ~/challenge
+  468  mkdir /var/challenge
+  469  sudo mkdir /var/challenge
+  470  sudo pacman -S htop
+  471  htop
+  472  mkdir ~/mexico
+  473  cd ~/mexico
+  474  wget https://cartografia.ife.org.mx/tmp/zips/CCol-01.zip
+  475  unzip CCol-01.zip
+  476  ls -l
+  477  ls -l > mexico.txt
+  478  cat mexico.txt
+  479  wc mexico.txt
+  480  wc -l mexico.txt
+  481  touch -a mexico.txt
+  482  ls -l
+  483  man touch
+  484  touch -t 199810190000.00 mexico.txt
+  485  touch -t 981019000000 mexico.txt
+  486  touch -t 9810190000.00 mexico.txt
+  487  ls -l
+  488  chmod 557 mexico.txt
+  489  ls -l
+  490  chmod 556 mexico.txt
+  491  ls -l
+  492  ln -s mexico.txt mimexico.txt
+  493  ls -l
+  494  sudo cp mimexico.txt /var/challenge
+  495  sudo cp mexico.txt /var/challenge
+  496  rm /var/challenge/mexico.txt
+  497  sudo pacman -Ss words
+  498  sudo pacman -S words
+  499  man grep
+  500  grep Mexico /usr/share/dict/words
+  501  grep mexico /usr/share/dict/words
+  502  less /usr/share/dict/words
+  503  grep me /usr/share/dict/words
+  504  grep mex /usr/share/dict/words
+  505  man find
+  506  find ~/ *.txt
+  507  find ~/ -name " *.txt"
+  508  find ~/ " *.txt"
+  509  find ~/ "*.txt"
+  510  find ~/ '*.txt'
+  511  find ~/ -name '*.txt'
+  512  df
+  513  history 
+  514  history | tail -n 47 > commands.txt
+
