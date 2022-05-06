@@ -24,3 +24,45 @@ defmodule Calculator do
     count(state)
   end
 end
+
+defmodule CalculatorAgent do
+  use Agent
+
+  def init(n) do
+    Agent.start(fn -> n end)
+  end
+
+  def sum(pid, val), do: Agent.update(pid, &(&1 + val))
+  def sub(pid, val), do:  Agent.update(pid, &(&1 - val)) 
+  def mult(pid, val), do: Agent.update(pid, &(&1 * val))
+  def div(pid, val), do: Agent.update(pid, &(&1 / val))
+
+
+  def state(pid) do
+    Agent.get(pid, & &1)
+  end
+
+  defp calc(current_value) do
+    receive do
+      {:sum, value} ->
+        current_value + value
+
+      {:sub, value} ->
+        current_value - value
+
+      {:mult, value} ->
+        current_value * value
+
+      {:div, value} ->
+        current_value / value
+
+      {:state, pid} ->
+        send(pid, {:state, current_value})
+        current_value
+
+      _ ->
+        IO.puts("Invalid request")
+    end
+    |> calc()
+  end
+end
