@@ -42,27 +42,4 @@ defmodule CalculatorAgent do
     Agent.get(pid, & &1)
   end
 
-  defp calc(current_value) do
-    receive do
-      {:sum, value} ->
-        current_value + value
-
-      {:sub, value} ->
-        current_value - value
-
-      {:mult, value} ->
-        current_value * value
-
-      {:div, value} ->
-        current_value / value
-
-      {:state, pid} ->
-        send(pid, {:state, current_value})
-        current_value
-
-      _ ->
-        IO.puts("Invalid request")
-    end
-    |> calc()
-  end
 end
