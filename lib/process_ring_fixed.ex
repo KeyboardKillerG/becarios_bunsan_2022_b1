@@ -16,6 +16,7 @@ defmodule ProcessRingFixed do
     |> Enum.each(fn {pid, next_pid} ->
       send(pid, {:config, next_pid, false})
     end)
+
     hd(pids)
   end
 
@@ -29,22 +30,30 @@ defmodule ProcessRingFixed do
       {:config, next_pid, main} ->
         IO.puts("pid: #{inspect(self())}, next: #{inspect(next_pid)} main: #{main}")
         process_msg(next_pid, main)
-      _ -> :ok
+
+      _ ->
+        :ok
     end
   end
 
   def process_msg(next, main) do
     receive do
-      {msg, 0, t} -> send(next, {msg, 1, t})
+      {msg, 0, t} ->
+        send(next, {msg, 1, t})
+
       {msg, n, t} ->
         IO.puts("Process #{inspect(self())} received message \"#{msg}\", round #{n}")
+
         cond do
-          main and n < t -> send(next, {msg, n + 1 , t})
+          main and n < t -> send(next, {msg, n + 1, t})
           main -> :ok
           true -> send(next, {msg, n, t})
         end
-      _ -> :ok
+
+      _ ->
+        :ok
     end
+
     process_msg(next, main)
   end
 end

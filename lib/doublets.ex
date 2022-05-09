@@ -4,8 +4,8 @@ defmodule Doublets.Solver do
   The puzzle is to take two words of the same length and find a way of linking the first word to the second word by only changing one letter at a time. At the end of the transformation, there will be a collections of words that show the beginning word being changed into the ending word, one letter at a time.
   """
   @words "./resources/words.txt"
-    |> File.read!
-    |> String.split("\n")
+         |> File.read!()
+         |> String.split("\n")
 
   def doublets(word_1, word_2) do
     doublets_impl([[word_1]], word_2)
@@ -14,8 +14,7 @@ defmodule Doublets.Solver do
   def doublets_impl([], _word_2), do: []
 
   def doublets_impl(word_seqs, word_2) do
-    seqs_variants =
-      Enum.flat_map(word_seqs, fn seq -> complete_seq_variants(seq) end)
+    seqs_variants = Enum.flat_map(word_seqs, fn seq -> complete_seq_variants(seq) end)
 
     case find_solution(seqs_variants, word_2) do
       nil -> doublets_impl(seqs_variants, word_2)
@@ -32,7 +31,8 @@ defmodule Doublets.Solver do
       word_seq
       |> last_word()
       |> find_variants()
-      |> Enum.filter(fn w -> not(w in word_seq) end)
+      |> Enum.filter(fn w -> w not in word_seq end)
+
     for v <- variants, do: word_seq ++ [v]
   end
 

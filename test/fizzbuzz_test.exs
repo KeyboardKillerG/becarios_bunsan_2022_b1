@@ -5,4 +5,4 @@ defmodule FizzBuzzTest do
   test "FizzBuzz Test" do
     assert FizzBuzz.fizzbuzz(100) == :ok
   end
-end 
+end
