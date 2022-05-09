@@ -1,6 +1,9 @@
 defmodule ProcessRing do
+  @moduledoc """
+    This module provides functions to create a Ring of process and send messages through it.
+  """
   def init(n) do
-    pids = Enum.map(1..n, fn x -> spawn(ProcessRing, :ring_process, [0, List.to_string([x+64])]) end)
+    pids = Enum.map(1..n, fn x -> spawn(ProcessRing, :ring_process, [0, List.to_string([x + 64])]) end)
     pids = pids ++ [hd pids]
     pid_pairs = Enum.chunk_every(pids, 2, 1, :discard)
     Enum.each(pid_pairs, fn [pid_a, pid_b] -> send(pid_a, {:point_to, pid_b})  end)

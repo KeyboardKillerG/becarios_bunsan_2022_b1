@@ -1,5 +1,7 @@
 defmodule WordCount do
-
+  @moduledoc """
+  This module counts occurrences of each different word from a single file.
+  """
   def frequencies_tasks(path) do
     path
     |> File.stream!()
@@ -10,7 +12,7 @@ defmodule WordCount do
       fn map, acc ->  
         Enum.reduce(map, acc, 
           fn {k, v}, acc ->  
-            Map.update(acc, k, v, fn existing_value -> existing_value + v end)
+            Map.update(acc, k, v, &(&1 + v))
           end) 
       end)
   end
@@ -21,7 +23,11 @@ defmodule WordCount do
 
   def count(text) do
     text = String.downcase(text)
-    text = text |> String.normalize(:nfd) |> String.replace(~r/[^A-z\s]/u,"") |> String.replace(~r/\s\s+/u, " ")
+    text = 
+      text 
+      |> String.normalize(:nfd) 
+      |> String.replace(~r/[^A-z\s]/u, "") 
+      |> String.replace(~r/\s\s+/u, " ")
     text = String.split(text, " ", trim: true)
     count(text, %{})
   end

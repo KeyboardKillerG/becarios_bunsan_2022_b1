@@ -1,5 +1,8 @@
 defmodule Doublets.Solver do
-
+  @moduledoc """
+  This module provides funtions to solve 'Doublets' puzzle.
+  The puzzle is to take two words of the same length and find a way of linking the first word to the second word by only changing one letter at a time. At the end of the transformation, there will be a collections of words that show the beginning word being changed into the ending word, one letter at a time.
+  """
   @words "./resources/words.txt"
     |> File.read!
     |> String.split("\n")
@@ -11,11 +14,8 @@ defmodule Doublets.Solver do
   def doublets_impl([], _word_2), do: []
 
   def doublets_impl(word_seqs, word_2) do
-    IO.inspect(word_seqs, label: "input")
-
     seqs_variants =
       Enum.flat_map(word_seqs, fn seq -> complete_seq_variants(seq) end)
-      |> IO.inspect(label: "variants")
 
     case find_solution(seqs_variants, word_2) do
       nil -> doublets_impl(seqs_variants, word_2)

@@ -6,7 +6,7 @@ defmodule MyList do
   Each.
 
   ## Examples
-    iex> MyList.each(["some","example"], fn x -> IO.puts(x) end)
+    iex> MyList.each(["some", "example"], fn x -> IO.puts(x) end)
     "some"
     "example"
     :ok
@@ -16,7 +16,7 @@ defmodule MyList do
   end
   def each([h|t], f) do
     f.(h)
-    each(t,f)
+    each(t, f)
   end
 
   @doc """
@@ -30,7 +30,7 @@ defmodule MyList do
     []
   end
   def map([h|t], f) do
-    [f.(h)] ++ map(t,f)
+    [f.(h)] ++ map(t, f)
   end
 
   @doc """
@@ -40,11 +40,11 @@ defmodule MyList do
     iex> Enum.reduce([1, 2, 3], 0, fn x, acc -> x + acc end)
     6
   """
-  def reduce([],ac,_) do
+  def reduce([], ac, _) do
     ac
   end
   def reduce([h|t], ac, f) do
-    reduce(t, f.(h,ac), f)
+    reduce(t, f.(h, ac), f)
   end 
 
   @doc """
@@ -54,14 +54,14 @@ defmodule MyList do
     iex> Enum.zip([1, 2, 3], [:a, :b, :c])
     [{1, :a}, {2, :b}, {3, :c}]
   """
-  def zip([],_) do
+  def zip([], _) do
     []
   end
-  def zip(_,[]) do
+  def zip(_, []) do
     []
   end
   def zip([h1|t1], [h2|t2]) do
-    [{h1,h2}] ++ zip(t1,t2)
+    [{h1, h2}] ++ zip(t1, t2)
   end
 
   @doc """
@@ -71,16 +71,16 @@ defmodule MyList do
     iex> Enum.zip_with([1, 2, 5, 6], [3, 4], fn x, y -> x + y end)
     [4, 6]
   """
-  def zip_with([],_,_) do
+  def zip_with([], _, _) do
     []
   end
   
-  def zip_with(_,[],_) do
+  def zip_with(_, [], _) do
     []
   end
   
   def zip_with([h1|t1], [h2|t2], f) do
-    [f.(h1,h2)] ++ zip_with(t1,t2,f)
+    [f.(h1, h2)] ++ zip_with(t1, t2, f)
   end
   
 end

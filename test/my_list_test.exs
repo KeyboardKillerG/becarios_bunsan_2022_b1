@@ -3,10 +3,10 @@ defmodule MyListTest do
   doctest MyList
   
   test "MyList Each Test" do
-    assert MyList.each([1,2,3], fn x -> x+1 end) == :ok
+    assert MyList.each([1, 2, 3], fn x -> x + 1 end) == :ok
   end
   test "MyList Map Test" do
-    assert MyList.map([1,2,3], fn x -> x+1 end) == [2,3,4]
+    assert MyList.map([1, 2, 3], fn x -> x + 1 end) == [2, 3, 4]
   end
   test "MyList Reduce Test" do
     assert MyList.reduce([1, 2, 3], 0, fn x, acc -> x + acc end) == 6

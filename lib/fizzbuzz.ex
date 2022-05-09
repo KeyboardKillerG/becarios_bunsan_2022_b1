@@ -4,21 +4,21 @@ defmodule FizzBuzz do
   """
 
   defp pnum(x) do  
-    case [rem(x,3), rem(x,5)] do
+    case [rem(x, 3), rem(x, 5)] do
       [t, f] when t * f == 0 -> ""
       _ -> Integer.to_string(x)
     end
   end
   
   defp fizz(x) do
-    case rem(x,3) do
+    case rem(x, 3) do
       0 -> "Fizz"
       _ -> ""
     end
   end
   
   defp buzz(x) do
-    case rem(x,5) do
+    case rem(x, 5) do
       0 -> "Buzz"
       _ -> ""
     end

@@ -1,4 +1,7 @@
 defmodule MetroCdmxChallenge do
+  @moduledoc """
+   This module helps to find paths from a station to another from Metro CDMX lines 
+  """
   import SweetXml
   @doc """
   Obtains ....
@@ -21,10 +24,16 @@ defmodule MetroCdmxChallenge do
     ]
   """
   defmodule Line do
+    @moduledoc """
+      This module provides a Struct that contains a Line and its Stations
+    """
     defstruct [:name, :stations]
   end
 
   defmodule Station do
+    @moduledoc """
+      This module provides a Struct that contains a Station and its coordinates
+    """
     defstruct [:name, :coordinates, :line]
   end
 
@@ -42,12 +51,12 @@ defmodule MetroCdmxChallenge do
           name: ~x"./name/text()"s, 
           coordinates: ~x"./Point/coordinates/text()"s] )
     stations_raw = Enum.map(map_lines[:stations], 
-      fn station-> 
+      fn station -> 
         %{name: station[:name], coordinates: station[:coordinates] 
         |> String.trim} 
       end) 
     lines_raw = Enum.map(map_lines[:lines], 
-      fn line-> 
+      fn line -> 
         %{name: line[:name], coordinates: line[:stations][:coordinates] 
         |> String.split(~r/\s+/, trim: true)} 
       end)    
@@ -57,14 +66,13 @@ defmodule MetroCdmxChallenge do
         stations: Enum.reduce(line[:coordinates], [], 
           fn station_coordinates, stations_list ->
             station = Enum.find(stations_raw, &(&1[:coordinates] == station_coordinates))
-            cond do       
-              station != nil ->
+            if station != nil do
               [%Station{
                 name: station[:name], 
                 coordinates: station_coordinates, 
                 line: line.name} 
                 | stations_list]
-            true ->
+            else
               stations_list
             end
           end) }| lines_list]

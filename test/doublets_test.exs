@@ -19,7 +19,7 @@ defmodule DoubletsTest do
   
   test "Complete sequence variants, one word in dictionary" do
     assert Doublets.Solver.complete_seq_variants(
-     ["head", "heal", "teal", "tell", "tall","call"]
+     ["head", "heal", "teal", "tell", "tall", "call"]
     ) == [["head", "heal", "teal", "tell", "tall", "call", "fall"]]
   end
 

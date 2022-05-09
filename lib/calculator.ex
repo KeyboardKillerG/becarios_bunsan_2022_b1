@@ -1,15 +1,28 @@
 defmodule Calculator do
+  @moduledoc """
+    This module provides a Calculator Server with the basic aritmethic operations (addition, subtraction, multiplication, and division)
+  """
   def init(n) do
    calc(n) 
   end
 
   def calc(n) do
     n = receive do
-      {:sum,  x, pid} -> send(pid, {:state, n + x}); n + x
-      {:sub,  x, pid} -> send(pid, {:state, n - x}); n - x
-      {:mult, x, pid} -> send(pid, {:state, n * x}); n * x
-      {:div,  x, pid} -> send(pid, {:state, n / x}); n / x
-      _ -> IO.puts "That seems crazy!"; n
+      {:sum,  x, pid} -> 
+        send(pid, {:state, n + x})
+        n + x
+      {:sub,  x, pid} -> 
+        send(pid, {:state, n - x})
+        n - x
+      {:mult, x, pid} -> 
+        send(pid, {:state, n * x})
+        n * x
+      {:div,  x, pid} -> 
+        send(pid, {:state, n / x})
+        n / x
+      _ -> 
+        IO.puts "That seems crazy!"
+        n
     end
     calc(n)
   end
@@ -26,6 +39,10 @@ defmodule Calculator do
 end
 
 defmodule CalculatorAgent do
+  @moduledoc """
+    This module provides a Calculator Server (Agent Based) with the basic aritmethic operations (addition, subtraction, multiplication, and division)
+  """
+
   use Agent
 
   def init(n) do
