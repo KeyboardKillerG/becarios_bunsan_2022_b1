@@ -35,7 +35,8 @@ defmodule BecariosBunsan2022B1.MixProject do
       {:benchee, "~> 1.0"},
       {:tzdata, "~> 1.1"},
       {:excoveralls, "~> 0.10", only: :test},
-      {:credo, "~> 1.6", only: [:dev, :test], runtime: false}
+      {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
+      {:tesla, "~> 1.4"}
     ]
   end
 end
