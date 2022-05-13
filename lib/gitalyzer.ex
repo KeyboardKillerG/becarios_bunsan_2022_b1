@@ -4,7 +4,7 @@ defmodule GitHub do
   plug Tesla.Middleware.BaseUrl, "https://api.github.com"
   plug Tesla.Middleware.Headers, 
     [
-      {"Authorization", "token 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"},
+      {"Authorization", "token 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"},
       {"User-Agent", "Tesla"}
     ]
   

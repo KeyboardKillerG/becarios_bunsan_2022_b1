@@ -36,7 +36,8 @@ defmodule BecariosBunsan2022B1.MixProject do
       {:tzdata, "~> 1.1"},
       {:excoveralls, "~> 0.10", only: :test},
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
-      {:tesla, "~> 1.4"}
+      {:tesla, "~> 1.4"},
+      {:amqp, "~> 3.1"}
     ]
   end
 end
